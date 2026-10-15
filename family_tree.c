@@ -24,3 +24,43 @@ Person* create_person(const char *name, int age){
 }
 
 
+void read_person_info(const char *role, char *name_out, int *age_out) {
+    printf("Enter %s's name: ", role);
+    fgets(name_out, 50, stdin);
+
+    for (int i = 0; name_out[i] != '\0'; i++) {
+      if (name_out[i] == '\n') {
+            name_out[i] = '\0';
+            break;
+        }
+    }
+
+    printf("Enter %s's age: ", role);
+    scanf("%d", age_out);
+    getchar();
+}
+
+int main(void){
+    char name[7][50];
+    int age[7];
+    Person *people[7];
+
+    read_person_info("Paternal Grandfather", name[0], &age[0]);
+    read_person_info("Paternal Grandmother", name[1], &age[1]);
+    read_person_info("Maternal Grandfather", name[2], &age[2]);
+    read_person_info("Maternal Grandmother", name[3], &age[3]);
+    read_person_info("Father", name[4], &age[4]);
+    read_person_info("Mother", name[5], &age[5]);
+    read_person_info("Yourself", name[6], &age[6]);
+
+    people[0] = create_person(name[0], age[0]);
+    people[1] = create_person(name[1], age[1]);
+    people[2] = create_person(name[2], age[2]);
+    people[3] = create_person(name[3], age[3]);
+    people[4] = create_person(name[4], age[4]);
+    people[5] = create_person(name[5], age[5]);
+    people[6] = create_person(name[6], age[6]);
+
+
+    return 0;
+}

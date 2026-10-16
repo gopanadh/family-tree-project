@@ -58,13 +58,13 @@ void print_family_relationships(const Person *me) {
     printf("   - Mother: %s | Age: %d\n",
            me->mother->name, me->mother->age);
 
-    printf("\n3. PATERNAL GRANDPARENTS (via Father's Pointers):\n");
+    printf("\n3. PATERNAL GRANDPARENTS :\n");
     printf("   - Grandfather: %s | Age: %d\n",
            me->father->father->name, me->father->father->age);
     printf("   - Grandmother: %s | Age: %d\n",
            me->father->mother->name, me->father->mother->age);
 
-    printf("\n4. MATERNAL GRANDPARENTS (via Mother's Pointers):\n");
+    printf("\n4. MATERNAL GRANDPARENTS :\n");
     printf("   - Grandfather: %s | Age: %d\n",
            me->mother->father->name, me->mother->father->age);
     printf("   - Grandmother: %s | Age: %d\n",
@@ -120,3 +120,4 @@ int main(void){
     return 0;
 }
 
+    

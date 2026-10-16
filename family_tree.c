@@ -72,10 +72,17 @@ void print_family_relationships(const Person *me) {
 }
 
 
+void free_family_tree(Person *people[], int count) {
+    for (int i = 0; i < count; i++) {
+        free(people[i]);
+    }
+}
+
+
 int main(void){
     char name[7][50];
     int age[7];
-    Person *people[7];
+    Person *people[7] = {NULL};
 
     read_person_info("Paternal Grandfather", name[0], &age[0]);
     read_person_info("Paternal Grandmother", name[1], &age[1]);
@@ -93,11 +100,23 @@ int main(void){
     people[5] = create_person(name[5], age[5]);
     people[6] = create_person(name[6], age[6]);
 
+    for (int i = 0; i < 7; i++) {
+        if (people[i] == NULL) {
+            printf("Error: Memory allocation failed.\n");
+            free_family_tree(people, 7);
+            return 1;
+        }
+    }
+
+
     link_parents(people[4], people[0], people[1]);
     link_parents(people[5], people[2], people[3]);
     link_parents(people[6], people[4], people[5]);
 
     print_family_relationships(people[6]);
 
+    free_family_tree(people, 7);
+
     return 0;
 }
+
